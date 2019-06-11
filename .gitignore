@@ -1,0 +1,14 @@
+*.pyc
+*~
+__pycache__
+myvenv
+db.sqlite3
+/audio
+/static
+/venv
+/video
+.DS_Store
+/fl/migrations
+/freelance/migrations
+
+/.idea
