@@ -1,13 +1,13 @@
-
-from rest_framework.response import Response
-from rest_framework.views import APIView
-
-from .serializers import PageDetailSer
+from rest_framework import viewsets
+from .serializers import PageDetailSerializer, PageIndexSerializer
 from .models import page
 
 
-class PageDetailView(APIView):
-    def get(self, request, pk):
-        subj = page.objects.filter(pk=pk)
-        serializer =PageDetailSer(subj, many=True)
-        return Response({"subj": serializer.data})
+
+class PageViewSet(viewsets.ReadOnlyModelViewSet):
+   queryset = page.objects.all()
+
+   def get_serializer_class(self):
+       if self.action == 'list':
+           return PageIndexSerializer
+       return PageDetailSerializer

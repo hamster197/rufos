@@ -18,7 +18,7 @@ class page(models.Model):
 
 
 class content(models.Model):
-    idd = models.ForeignKey(page, related_name='page_video', verbose_name='Страница (Page)', on_delete=models.CASCADE)
+    idd = models.ForeignKey(page, related_name='pages', verbose_name='Страница (Page)', on_delete=models.CASCADE)
     video_url = models.FileField(verbose_name='ссылка на видеофайл', upload_to='video/%Y/%m/%d', blank=False)
     video_sub_url = models.FileField(verbose_name='ссылка на файл субтитров', upload_to='video/%Y/%m/%d/sub',
                                      blank=False)

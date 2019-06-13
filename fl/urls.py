@@ -1,9 +1,10 @@
-from django.urls import path
 
-from fl.views import PageDetailView
+from rest_framework.routers import DefaultRouter
 
-app_name = "fl"
-urlpatterns = [
-    #path('index/', PageIndexView.as_view(), name='index'),
-    path('<pk>/', PageDetailView.as_view(), name='detail'),
-]
+from fl.views import PageViewSet
+
+router = DefaultRouter()
+router.register('api/pages', PageViewSet)
+
+
+urlpatterns = router.urls

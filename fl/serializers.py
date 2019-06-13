@@ -6,6 +6,7 @@ from fl.models import page, content
 
 
 
+
 class ContentSerializer(serializers.ModelSerializer):
     class Meta:
         model = content
@@ -16,10 +17,13 @@ class ContentSerializer(serializers.ModelSerializer):
         ret = OrderedDict(list(filter(lambda x: x[1], ret.items())))
         return ret
 
-
-class PageDetailSer(serializers.ModelSerializer):
-    page_video = ContentSerializer(many=True, read_only=True)
-
+class PageIndexSerializer(serializers.ModelSerializer):
     class Meta:
         model = page
-        fields = ('pk', 'nazv', 'title', 'page_video')
+        fields = ('pk', 'nazv', 'title','url')
+
+class PageDetailSerializer(serializers.ModelSerializer):
+    pages = ContentSerializer(many=True, read_only=True)
+    class Meta:
+        model = page
+        fields = ('pk', 'nazv', 'title', 'pages',)
